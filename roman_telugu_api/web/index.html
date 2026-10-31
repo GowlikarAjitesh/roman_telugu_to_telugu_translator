@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f7fb" />
+    <meta name="description" content="A calm, focused editor for translating Roman Telugu into Telugu." />
+    <title>Akshara — Roman Telugu editor</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./config.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Akshara home">
+          <span class="brand-mark" aria-hidden="true">అ</span>
+          <span>akshara<span class="brand-period">.</span></span>
+        </a>
+        <div class="topbar-right">
+          <span class="model-chip"><span class="status-dot"></span> Telugu translator</span>
+          <a class="github-link" href="#editor">Open editor <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="intro" aria-labelledby="page-title">
+          <div class="eyebrow"><span class="eyebrow-line"></span> A little closer to home</div>
+          <h1 id="page-title">Your words,<br /><span>in Telugu.</span></h1>
+          <p class="intro-copy">Write the way you speak. Get a Telugu-script translation in a click.</p>
+        </section>
+
+        <section class="workspace" id="editor" aria-label="Roman Telugu translation editor">
+          <div class="workspace-heading">
+            <div>
+              <div class="workspace-title">Translation workspace</div>
+              <div class="workspace-subtitle">Roman Telugu <span aria-hidden="true">→</span> Telugu</div>
+            </div>
+            <div class="shortcut"><kbd>Ctrl</kbd><span>+</span><kbd>Enter</kbd><span class="shortcut-label">to translate</span></div>
+          </div>
+
+          <div class="editor-grid">
+            <section class="editor-card source-card" aria-labelledby="source-heading">
+              <div class="card-heading">
+                <div class="language-label"><span class="language-icon roman-icon">Aa</span><div><h2 id="source-heading">Roman Telugu</h2><p>Type or paste your text</p></div></div>
+                <button class="text-button" id="clearButton" type="button" title="Clear source text">Clear</button>
+              </div>
+              <label class="sr-only" for="sourceText">Roman Telugu text to translate</label>
+              <textarea id="sourceText" maxlength="4000" spellcheck="false" placeholder="e.g. Nenu Telugu nerchukuntunnanu…"></textarea>
+              <div class="card-footer">
+                <span id="sourceCount">0 words <span class="count-divider">·</span> 0 / 4,000</span>
+                <button class="sample-button" id="sampleButton" type="button"><span aria-hidden="true">✦</span> Try an example</button>
+              </div>
+            </section>
+
+            <div class="direction-mark" aria-hidden="true"><span>→</span></div>
+
+            <section class="editor-card result-card" aria-labelledby="result-heading">
+              <div class="card-heading">
+                <div class="language-label"><span class="language-icon telugu-icon">అ</span><div><h2 id="result-heading">తెలుగు</h2><p>Telugu translation</p></div></div>
+                <button class="icon-button" id="copyButton" type="button" aria-label="Copy translation" title="Copy translation" disabled>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"></path></svg>
+                </button>
+              </div>
+              <div class="translation-output" id="translationOutput" lang="te" aria-live="polite" aria-label="Telugu translation"><span class="output-placeholder">Your translation will appear here<span class="placeholder-cursor"></span></span></div>
+              <div class="card-footer result-footer">
+                <span id="resultMeta">Ready when you are</span>
+                <span class="unicode-label"><span aria-hidden="true">◎</span> Telugu Unicode</span>
+              </div>
+            </section>
+          </div>
+
+          <div class="action-row">
+            <div class="status-message" id="statusMessage" role="status" aria-live="polite"><span class="status-indicator"></span><span id="statusText">Enter some Roman Telugu to begin.</span></div>
+            <button class="translate-button" id="translateButton" type="button">
+              <span class="button-label">Translate to Telugu</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <details class="connection-settings">
+            <summary><span class="settings-icon" aria-hidden="true">⚙</span> Connection settings</summary>
+            <div class="settings-body">
+              <label for="apiUrl">Translation API URL</label>
+              <div class="api-input-row">
+                <input id="apiUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://your-space.hf.space" />
+                <button id="checkApiButton" class="check-button" type="button">Check connection</button>
+              </div>
+              <p>Use your deployed API URL, or <span class="local-url">http://localhost:7860</span> while running it locally. This setting stays in this browser.</p>
+            </div>
+          </details>
+        </section>
+
+        <footer class="page-footer">
+          <span>Made for the way you write.</span>
+          <span>Roman Telugu <span aria-hidden="true">→</span> Telugu</span>
+        </footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
